@@ -12,10 +12,9 @@ While existing state-of-the-art models (like CFairMD, CLAIRE, and Adversarial CF
    - *Telco Customer Churn* (Target: Churn, Sensitive: Gender)
    - *Credit Score & Financial Clustering* (Target: Good Credit, Sensitive: Age > 30)
 4. **Comprehensive Benchmarking Dashboard**: Includes a fully interactive **Streamlit Dashboard** that compares 4 major fairness paradigms in a single click:
-   - **CFairMD** (Baseline CIWAE without fairness penalty on latent space):https://ieeexplore.ieee.org/document/11625989 (Counterfactual Fairness Prediction on Missing Data)
-   - **CLAIRE** (KDD '23 - MMD-based latent matching) : https://dl.acm.org/doi/10.1145/3580305.3599408 (J. Ma, R. Guo, A. Zhang, and J. Li, “Learning for counterfactual fairness
-from observational data,” in KDD, 2023, pp. 1620–1630)
-   - **Adversarial CF** (Grari et al. - Adversarial Minimax Inference) : Adversarial learning for counterfactual fairness (https://link.springer.com/article/10.1007/s10994-022-06206-8)
+   - **CFairMD** (Baseline CIWAE without fairness penalty on latent space)
+   - **CLAIRE** (KDD '23 - MMD-based latent matching)
+   - **Adversarial CF** (Grari et al. - Adversarial Minimax Inference)
    - **ProCFair** (Proposed SOTA Novelty)
 
 ## 📊 Evaluation Metrics

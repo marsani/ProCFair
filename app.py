@@ -25,17 +25,22 @@ dataset_choice = st.selectbox(
 # Set path and arguments based on choice
 BASE_DIR = os.path.dirname(__file__)
 if dataset_choice == "Online Retail II":
-    DATA_PATH = os.path.join(BASE_DIR, 'online_retail_II.xlsx')
+    # Link langsung dari UCI Machine Learning Repository
+    DATA_PATH = "https://archive.ics.uci.edu/ml/machine-learning-databases/00502/online_retail_II.xlsx"
     dataset_name = 'retail'
     sample_frac = 1.0
     st.info("**Retail Dataset**: Fitur (RFM), Sensitive Attr (Country UK/Non-UK), Target (High Spender).")
 elif dataset_choice == "Telco Customer Churn":
-    DATA_PATH = os.path.join(BASE_DIR, 'WA_Fn-UseC_-Telco-Customer-Churn.csv')
+    # Link langsung dari raw GitHub repository publik
+    DATA_PATH = "https://raw.githubusercontent.com/treselle-systems/customer_churn_analysis/master/WA_Fn-UseC_-Telco-Customer-Churn.csv"
     dataset_name = 'telco'
     sample_frac = 1.0
     st.info("**Telco Dataset**: Fitur (Numeric Charges), Sensitive Attr (Gender), Target (Churn).")
 else:
-    DATA_PATH = os.path.join(BASE_DIR, 'Credit Score dan Financial Clustering', 'train.csv')
+    # Untuk dataset Credit Score (30MB+), idealnya Anda menggunakan Git LFS atau merilisnya di GitHub Releases. 
+    # Sementara ini menggunakan path lokal. Jika Anda deploy ke server, Anda bisa mengunggah file ini ke Google Drive dan menaruh link 'direct download' nya di sini.
+    local_path = os.path.join(BASE_DIR, 'Credit Score dan Financial Clustering', 'train.csv')
+    DATA_PATH = local_path if os.path.exists(local_path) else "https://raw.githubusercontent.com/[YOUR_USERNAME]/[REPO]/main/train.csv"
     dataset_name = 'credit'
     sample_frac = 0.2 # Subsample 20% to avoid extreme loading times
     st.info("**Credit Score Dataset**: Fitur (Financial metrics), Sensitive Attr (Age > 30), Target (Good Credit Score). *Disampling 20% agar lebih cepat.*")
@@ -213,9 +218,9 @@ try:
         st.info("Fitur ini akan menghasilkan tabel komparasi seperti Table I pada *paper*. Proses ini akan melatih **9 model** sekaligus.")
         if st.button("Generate Full Comparison Table (Run All)", type="primary"):
             datasets = [
-                ("Online Retail II", os.path.join(BASE_DIR, 'online_retail_II.xlsx'), 'retail', 1.0),
-                ("Telco Churn", os.path.join(BASE_DIR, 'WA_Fn-UseC_-Telco-Customer-Churn.csv'), 'telco', 1.0),
-                ("Credit Score", os.path.join(BASE_DIR, 'Credit Score dan Financial Clustering', 'train.csv'), 'credit', 0.2)
+                ("Online Retail II", "https://archive.ics.uci.edu/ml/machine-learning-databases/00502/online_retail_II.xlsx", 'retail', 1.0),
+                ("Telco Churn", "https://raw.githubusercontent.com/treselle-systems/customer_churn_analysis/master/WA_Fn-UseC_-Telco-Customer-Churn.csv", 'telco', 1.0),
+                ("Credit Score", os.path.join(BASE_DIR, 'Credit Score dan Financial Clustering', 'train.csv') if os.path.exists(os.path.join(BASE_DIR, 'Credit Score dan Financial Clustering', 'train.csv')) else "https://raw.githubusercontent.com/[YOUR_USERNAME]/[REPO]/main/train.csv", 'credit', 0.2)
             ]
             
             results = []
